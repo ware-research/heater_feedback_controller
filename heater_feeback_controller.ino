@@ -37,13 +37,12 @@ Please consider citing!
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-//thermocouple pins
 #define TC_SCK 13 // using pin 13 on an arduino uno my cause the onboard LED to flash.
 #define TC_SDO 12
 #define TC_SDI 11
 #define TC_CS 10
 
-int target_temp = 37; // Adjust target temperature here
+int target_temp = 37;
 
 bool heatON = false;
 
@@ -64,9 +63,9 @@ void setup() {
   display.setTextColor(WHITE);
 
   max.begin();
-  max.setThermocoupleType(MAX31856_TCTYPE_K); //change thermocouple type if using something other than type K
+  max.setThermocoupleType(MAX31856_TCTYPE_K);
 
-  //Serial.begin(9600); //uncomment for troubleshooting
+  //Serial.begin(9600);
 }
 
 void loop() {
@@ -77,7 +76,7 @@ void loop() {
 
   checkTemp(temp, target_temp);
 
-  //Serial.println(heatON); //uncomment for troubleshooting
+  //Serial.println(heatON);
 
   delay(500);
 }
@@ -118,7 +117,7 @@ void checkTemp(float temp, float target_temp){
 
   if (temp > target_temp){
     digitalWrite(6,0);
-    //digitalWrite(6,0); //if hot ends do not trigger, enable this second digitalWrite line
+    //digitalWrite(6,0);
     heatON = false;
 
   }  
